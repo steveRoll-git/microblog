@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title> AdonisJS - A fully featured web framework for Node.js </title>
+  <title> The Microblog </title>
 
   @vite(['resources/js/app.js'])
 </head>
+
 <body>
-  <h1> It Works! </h1>
+  <div id="main-grid">
+    <div id="center-column">
+      @!component('components/post', { author: "xYh23", body: "This is a very cool post wow asdfasdf asdf asdf asdf asd fasd fasd fas sgvdfg wertgh rwet herth erth er1" })
+    </div>
+  </div>
 </body>
+
 </html>
