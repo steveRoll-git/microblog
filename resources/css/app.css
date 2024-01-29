@@ -19,16 +19,23 @@ body {
   grid-column: 2;
 }
 
+.post-header {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  padding-inline-start: 0.5em;
+}
+
 .post-author {
-  font-size: small;
   border-radius: 5px;
   background-color: lightgreen;
   padding: 3px;
   width: fit-content;
+}
 
+.post-date {
+  font-size: small;
   margin-inline-start: 0.5em;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  color: grey;
 }
 
 .post-body {
