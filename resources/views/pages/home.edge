@@ -12,10 +12,14 @@
 <body>
   <div id="main-grid">
     <div id="center-column">
+      @each(post in contextPosts)
+        @!component('components/post', post)
+      @else
+      @end
       @if(mainPost)
         @!component('components/post', { ...mainPost, main: true })
       @end
-      @!component('components/postForm')
+      @!component('components/postForm', { mainPost, reply: !!mainPost })
       @each(post in posts)
         @!component('components/post', post)
       @end

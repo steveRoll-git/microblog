@@ -12,11 +12,12 @@ function colorFromName(n: string) {
 
 function serializePost(post: Post) {
   return {
+    id: post.id,
+    isReply: !!post.parentPostId,
     author: post.author,
     authorColor: colorFromName(post.author),
     body: post.body,
     date: post.createdAt.toLocaleString(DateTime.DATETIME_FULL),
-    postId: post.id,
   }
 }
 
@@ -49,6 +50,7 @@ export default class PostsController {
     const post = await Post.create({
       author: md5(request.ip()).substring(0, 6),
       body: payload.body,
+      parentPostId: payload.parentPostId,
     })
     response.redirect(`/post/${post.id}`)
   }
@@ -58,8 +60,16 @@ export default class PostsController {
    */
   async show({ params, view }: HttpContext) {
     const mainPost = await Post.findOrFail(params.postId)
-    // const replies = await Post.query().where('parent_post_id', mainPost.id)
-    return view.render('pages/home', { mainPost: serializePost(mainPost), posts: [] })
+    const replies = await Post.query().where('parent_post_id', mainPost.id)
+    const contextPosts: Post[] = []
+    if (mainPost.parentPostId) {
+      contextPosts.push(await Post.findOrFail(mainPost.parentPostId))
+    }
+    return view.render('pages/home', {
+      mainPost: serializePost(mainPost),
+      posts: serializePosts(replies),
+      contextPosts: serializePosts(contextPosts),
+    })
   }
 
   /**

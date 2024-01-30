@@ -1,6 +1,9 @@
 <form class="new-post-form column-item" action="/new_post" method="post">
   {{ csrfField() }}
-  <textarea class="new-post-textarea" name="body" maxlength="300" required placeholder="{{  placeholder || " Post something..." }}">
+  @if(mainPost)
+    <input type="hidden" name="parentPostId" value="{{ mainPost.id }}">
+  @end
+  <textarea class="new-post-textarea" name="body" maxlength="300" required placeholder="{{ reply ? "Post a reply..." : " Post something..." }}">
 </textarea>
-  <input type="submit" value="Post" class="new-post-button">
+  <input type="submit" value="{{ reply ? "Post Reply" : "Post" }}" class="new-post-button">
 </form>

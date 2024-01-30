@@ -1,6 +1,6 @@
-<a class="post {{  main ? "main-post" : ""}} column-item" href="/post/{{  postId  }}">
+<a class="post {{ main ? "main-post" : "" }} column-item" href="/post/{{ id }}">
   <div class="post-header">
-    <span class="post-author" style="background-color: {{ authorColor }};">{{ author }}</span><span class="post-date">{{ date }}</span>
+    <span class="post-author" style="background-color: {{ authorColor }};">{{ author }}</span><span class="post-date">{{ (isReply ? "Replied on " : "") + date }}</span>
   </div>
   <p class="post-body">{{ body }}</p>
 </a>
