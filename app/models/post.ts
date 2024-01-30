@@ -1,6 +1,5 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, hasMany } from '@adonisjs/lucid/orm'
-import * as relations from '@adonisjs/lucid/types/relations'
+import { BaseModel, column } from '@adonisjs/lucid/orm'
 
 export default class Post extends BaseModel {
   @column({ isPrimary: true })
@@ -12,10 +11,8 @@ export default class Post extends BaseModel {
   @column()
   declare body: string
 
-  @hasMany(() => Post, {
-    foreignKey: 'parent_post_id',
-  })
-  declare replies: relations.HasMany<typeof Post>
+  @column()
+  declare parentPostId: number
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

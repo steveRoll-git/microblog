@@ -12,6 +12,9 @@
 <body>
   <div id="main-grid">
     <div id="center-column">
+      @if(mainPost)
+        @!component('components/post', { ...mainPost, main: true })
+      @end
       @!component('components/postForm')
       @each(post in posts)
         @!component('components/post', post)

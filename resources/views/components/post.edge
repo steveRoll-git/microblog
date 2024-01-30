@@ -1,6 +1,6 @@
-<div class="post column-item">
+<a class="post {{  main ? "main-post" : ""}} column-item" href="/post/{{  postId  }}">
   <div class="post-header">
     <span class="post-author" style="background-color: {{ authorColor }};">{{ author }}</span><span class="post-date">{{ date }}</span>
   </div>
   <p class="post-body">{{ body }}</p>
-</div>
+</a>

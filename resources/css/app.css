@@ -10,6 +10,15 @@ body {
   width: 100%;
 }
 
+a {
+  text-decoration: none;
+  color: unset;
+}
+
+a:hover {
+  background-color: rgb(245, 245, 245);
+}
+
 #main-grid {
   display: grid;
   grid-template-columns: 1fr 600px 1fr;
@@ -29,11 +38,16 @@ body {
   padding: 0.5em;
 }
 
+.main-post {
+  font-size: x-large;
+}
+
 .post-header {
   padding-inline-start: 0.2em;
 }
 
 .post-author {
+  font-size: 0.8em;
   border-radius: 5px;
   padding: 3px;
   width: fit-content;
@@ -41,7 +55,7 @@ body {
 }
 
 .post-date {
-  font-size: small;
+  font-size: 0.7em;
   margin-inline-start: 0.5em;
   color: grey;
 }

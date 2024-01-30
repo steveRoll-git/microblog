@@ -10,17 +10,24 @@ function colorFromName(n: string) {
   return `hsl(${hue}, 50%, 75%)`
 }
 
+function serializePost(post: Post) {
+  return {
+    author: post.author,
+    authorColor: colorFromName(post.author),
+    body: post.body,
+    date: post.createdAt.toLocaleString(DateTime.DATETIME_FULL),
+    postId: post.id,
+  }
+}
+
+function serializePosts(posts: Post[]) {
+  return posts.map((p) => serializePost(p))
+}
+
 export default class PostsController {
   async homePage({ view }: HttpContext) {
     const posts = await Post.all()
-    return view.render('pages/home', {
-      posts: posts.map((p) => ({
-        author: p.author,
-        authorColor: colorFromName(p.author),
-        body: p.body,
-        date: p.createdAt.toLocaleString(DateTime.DATETIME_FULL),
-      })),
-    })
+    return view.render('pages/home', { posts: serializePosts(posts) })
   }
 
   /**
@@ -43,13 +50,17 @@ export default class PostsController {
       author: md5(request.ip()).substring(0, 6),
       body: payload.body,
     })
-    response.redirect('/') // TODO redirect to the new post's page
+    response.redirect(`/post/${post.id}`)
   }
 
   /**
    * Show individual record
    */
-  async show({ params }: HttpContext) {}
+  async show({ params, view }: HttpContext) {
+    const mainPost = await Post.findOrFail(params.postId)
+    // const replies = await Post.query().where('parent_post_id', mainPost.id)
+    return view.render('pages/home', { mainPost: serializePost(mainPost), posts: [] })
+  }
 
   /**
    * Edit individual record
