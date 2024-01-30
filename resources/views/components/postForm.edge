@@ -1,4 +1,5 @@
 <form class="new-post-form column-item" action="/new_post" method="post">
+  {{ csrfField() }}
   <textarea class="new-post-textarea" name="body" maxlength="300" required placeholder="{{  placeholder || " Post something..." }}">
 </textarea>
   <input type="submit" value="Post" class="new-post-button">
