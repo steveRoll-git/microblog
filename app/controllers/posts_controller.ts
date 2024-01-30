@@ -10,7 +10,7 @@ export default class PostsController {
       posts: posts.map((p) => ({
         author: p.author,
         body: p.body,
-        date: p.createdAt.toLocaleString(DateTime.DATETIME_SHORT),
+        date: p.createdAt.toLocaleString(DateTime.DATETIME_FULL),
       })),
     })
   }
