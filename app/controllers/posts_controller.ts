@@ -32,16 +32,6 @@ export default class PostsController {
   }
 
   /**
-   * Display a list of resource
-   */
-  async index({}: HttpContext) {}
-
-  /**
-   * Display form to create a new record
-   */
-  async create({}: HttpContext) {}
-
-  /**
    * Handle form submission for the create action
    */
   async store({ request, response }: HttpContext) {
@@ -71,14 +61,4 @@ export default class PostsController {
       contextPosts: serializePosts(contextPosts),
     })
   }
-
-  /**
-   * Edit individual record
-   */
-  async edit({ params }: HttpContext) {}
-
-  /**
-   * Delete record
-   */
-  async destroy({ params }: HttpContext) {}
 }
