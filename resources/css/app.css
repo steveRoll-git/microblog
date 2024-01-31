@@ -10,6 +10,16 @@ body {
   width: 100%;
 }
 
+:root {
+  --center-column-width: 90vw;
+}
+
+@media (min-width: 1281px) {
+  :root {
+    --center-column-width: 600px;
+  }
+}
+
 a {
   text-decoration: none;
   color: unset;
@@ -21,7 +31,7 @@ a:hover {
 
 #main-grid {
   display: grid;
-  grid-template-columns: 1fr 600px 1fr;
+  grid-template-columns: 1fr var(--center-column-width) 1fr;
   height: 100vh;
 }
 
